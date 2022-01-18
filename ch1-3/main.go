@@ -4,12 +4,15 @@ import (
 	"fmt"
 	"os"
 	"bufio"
+	"io/ioutil"
+	"strings"
 )
 
 
 func main(){
 	// scan_1()
-	scan_2()
+	// scan_2()
+	scan_3()
 }
 
 
@@ -51,6 +54,38 @@ func scan_2(){
 
 	fmt.Println("map is: ",xmap)
 }
+
+func scan_3(){
+	countmap:=make(map[string]int)
+	files:=os.Args[1:]
+
+	for _,fileName:=range files{
+		data,err:=ioutil.ReadFile(fileName)
+
+		if err==nil {
+			fmt.Println("file readed, result is: ",string(data))
+			var stringContent string =string(data)
+
+			for _,line:=range strings.Split(stringContent,"\n"){
+				countmap[line]++
+			}
+			
+		}else{
+			fmt.Fprintf(os.Stderr,"read file failed, %v\n",err)
+			continue
+		}
+
+	}
+
+
+	fmt.Println("result map is:", countmap)
+
+
+}
+
+
+
+
 
 
 
