@@ -20,6 +20,10 @@ func MeterToKiloMeter(m Meter) (km KiloMeter) {
 	return
 }
 
+func (km KiloMeter) String() string {
+	return fmt.Sprintf("%f km", km)
+}
+
 var b = flag.Bool("n", false, "this is a boolean flag value, you see, right?")
 
 func main() {
@@ -35,4 +39,6 @@ func main() {
 	fmt.Println(a == 1)
 	fmt.Println(a == KiloMeter(b))
 	fmt.Println(a == 1)
+
+	fmt.Println(ONE_KM)
 }
