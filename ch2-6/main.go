@@ -29,6 +29,10 @@ var b = flag.Bool("n", false, "this is a boolean flag value, you see, right?")
 func main() {
 	fmt.Println("main invoked")
 
+	func() {
+		fmt.Println("anonymous method invoked")
+	}()
+
 	flag.Parse()
 	fmt.Println("value of b flag is: ", *b)
 
@@ -41,4 +45,12 @@ func main() {
 	fmt.Println(a == 1)
 
 	fmt.Println(ONE_KM)
+}
+
+func init() {
+	fmt.Println("init 1 invoked")
+}
+
+func init() {
+	fmt.Println("init 2 invoked")
 }
