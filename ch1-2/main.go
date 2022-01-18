@@ -11,7 +11,8 @@ func main(){
 	fmt.Println("the running program is: ",os.Args[0])
 
 	// echo_2()
-	echo3()
+	// echo3()
+	echo4()
 }
 
 
@@ -44,5 +45,11 @@ func echo_2(){
 
 func echo3(){
 	fmt.Println("what you inpout is:",strings.Join(os.Args[1:]," "))
+}
+
+func echo4(){
+	for i,v:=range os.Args[1:]{
+		fmt.Println("index is: ",i," value is: ",v)
+	}
 }
 	
