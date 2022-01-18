@@ -41,9 +41,11 @@ func scan_2(){
 	for _,f:=range files{
 		file,err:=os.Open(f)
 		if err!=nil {
-			fmt.Println("open file failed, error is: ",err)
+			fmt.Fprintf(os.Stderr,"open file failed: %v\n",err)
+			continue
 		}else{
 			scanLines(file,xmap)
+			file.Close()
 		}
 	}
 
