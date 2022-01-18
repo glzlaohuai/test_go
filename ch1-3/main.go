@@ -8,7 +8,8 @@ import (
 
 
 func main(){
-	scan_1()
+	// scan_1()
+	scan_2()
 }
 
 
@@ -30,4 +31,35 @@ func scan_1(){
 	}
 
 }
+
+
+func scan_2(){
+	files:=os.Args[1:]
+	fmt.Println("incoming files: ",files)
+	xmap:=make(map[string]int)
+
+	for _,f:=range files{
+		file,err:=os.Open(f)
+		if err!=nil {
+			fmt.Println("open file failed, error is: ",err)
+		}else{
+			scanLines(file,xmap)
+		}
+	}
+
+	fmt.Println("map is: ",xmap)
+}
+
+
+
+func scanLines(f *os.File,counts map[string]int){
+	fmt.Println("scan file: ",f.Name())
+	reader:=bufio.NewScanner(f)
+	for reader.Scan(){
+		fmt.Println("readed: ",reader.Text())
+		counts[reader.Text()]++
+	}
+}
+
+
 
