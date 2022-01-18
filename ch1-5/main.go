@@ -8,6 +8,7 @@ import(
 	"os"
 	"net/http"
 	"io"
+	"strings"
 )
 
 
@@ -22,6 +23,10 @@ func main(){
 func fetch(urls []string){
 	for _,url:=range urls{
 
+		if  !strings.HasPrefix(url,"http"){
+			url="http://"+url
+			
+		}
 		resp,err:=http.Get(url)
 		if err!=nil {
 			fmt.Fprintf(os.Stderr,"get url failed with error %v",err)
