@@ -3,14 +3,21 @@ package main
 import(
 	"fmt"
 	"os"
+	"strings"
 )
 
 
 func main(){
+	fmt.Println("the running program is: ",os.Args[0])
 
+	// echo_2()
+	echo3()
+}
+
+
+func echo_1(){
 	var s,seg string ="",""
 
-	fmt.Println("the running program is: ",os.Args[0])
 
 	for i:=1;i<len(os.Args);i++{
 		s+=seg+os.Args[i]
@@ -19,3 +26,23 @@ func main(){
 
 	fmt.Println("echo:",s)
 }
+
+func echo_2(){
+
+	s,seg:="",""
+
+	for _,v:= range os.Args[1:]{
+		s+=seg+v
+		seg = " "
+	}
+
+
+	fmt.Println("what you input is: ",s)
+
+}
+
+
+func echo3(){
+	fmt.Println("what you inpout is:",strings.Join(os.Args[1:]," "))
+}
+	
