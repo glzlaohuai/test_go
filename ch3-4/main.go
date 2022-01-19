@@ -6,6 +6,11 @@ import (
 	"reflect"
 )
 
+const TIPS string = `all the warriors in the world
+
+
+join the passion of this master of soul!\n\` + "\x41"
+
 func main() {
 	fmt.Println(math.MaxFloat32, math.MaxFloat64)
 	fmt.Println(math.NaN())
@@ -19,6 +24,8 @@ func main() {
 	fmt.Println(len(s))
 
 	fmt.Println(reflect.TypeOf(s[0:3]).Kind())
+
+	fmt.Println(TIPS)
 
 }
 
