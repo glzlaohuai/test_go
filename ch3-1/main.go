@@ -16,4 +16,6 @@ package main
 	fmt.Printf("y: %08b\n",y)
 
 	 fmt.Printf("binary form: %08b\n",x^y) // the difference
+	//  fmt.Printf("%d, %#[1]o, %#[1]x",x)
+	 fmt.Printf("print with extra signs: %d, %#[1]o, %#[1]x\n",x)
  }
