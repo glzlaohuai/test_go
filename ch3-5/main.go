@@ -4,6 +4,7 @@ import(
 	"fmt"
 	"unicode/utf8"
 	"strings"
+	"bytes"
 )
 
 func main(){
@@ -61,7 +62,111 @@ func main(){
 
 	fmt.Println(basename2(a))
 	fmt.Println(commaIt("123234546"))
+
+
+	fmt.Println("s is :",s)
+
+	byteArray:=[]byte(s)
+	fmt.Println("byte array is: ",byteArray, len(byteArray))
+
+	intArray:=[]int32(s)
+	fmt.Println("int array is: ",intArray, len(intArray))
+
+
+	xintArray:=[]int32{1,2,3,}
+	fmt.Println(intArrayToString(xintArray))
+
+	fmt.Println(commaWithFloat(1.123123123123))
+
+	fmt.Println(ruffle("abc","bca"))
+	fmt.Println(ruffle("abcd","bca"))
+	fmt.Println(ruffle("abc你","你bca"))
+
+
 }
+
+
+
+func intArrayToString(intArray []int32)string{
+	var buffer  bytes.Buffer
+
+	buffer.WriteByte('[')
+
+	for i,v:=range intArray{
+		fmt.Fprintf(&buffer,"%d:%d",i,v)
+		buffer.WriteString(", ")
+	}
+
+
+	buffer.WriteByte(']')
+
+	return buffer.String()
+}
+
+
+func commaWithFloat (arg float64) string{
+	d:=int64(arg)
+	f:=arg - float64(d)
+	ds:=fmt.Sprintf("%d",d)
+	fs:=fmt.Sprintf("%v",f)[2:]
+
+
+	var buffer bytes.Buffer
+
+	for i,v:=range ds{
+		buffer.WriteRune(v)
+		if i%3==2 && i!=len(ds)-1 {
+			buffer.WriteByte(',')
+		}
+	}
+
+	buffer.WriteByte('.')
+
+	for i,v:=range fs{
+		buffer.WriteRune(v)
+		if i%3==2 && i!=len(fs)-1 {
+			buffer.WriteByte(',')
+		}
+	}
+
+
+	return buffer.String()
+}
+
+
+func ruffle(s1 string,s2 string)bool{
+	sarray1:= []rune(s1)
+	sarray2:=[]rune(s2)
+
+	if len(sarray1) != len(sarray2) {
+		return false
+	}
+
+
+	for _,v:=range sarray1{
+
+		if !containsInRuneArray(sarray2,v) {
+			return false
+		}
+
+	}
+
+	return true
+
+}
+
+func containsInRuneArray(xarray []rune, value rune)bool{
+	for _,v:=range(xarray){
+		if v == value {
+			return true
+		}
+	}
+
+	return false
+}
+
+
+
 
 
 
