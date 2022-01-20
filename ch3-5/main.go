@@ -47,4 +47,51 @@ func main(){
 		fmt.Printf("i is %d, r is: %#x\n",i,r)
 	}
 
+	a:="/abc/x/x/x/x.text"
+	b:="empty"
+	c:="abc/x.go.test"
+	d:="/a/b/c/d/"
+
+	fmt.Println(basename(a))
+	fmt.Println(basename(b))
+	fmt.Println(basename(c))
+	fmt.Println(basename(d))
+
+
+}
+
+
+
+const char_dot rune = '.'
+const char_slash rune = '/'
+
+func basename(s string)string{
+
+	result:=s
+	runeArray:=[]rune(result)
+
+
+	//remove first encountered slash char from rever order
+	for i:=len(result)-1;i>=0;i--{
+		if runeArray[i] == char_slash {
+			result = s[i+1:]
+			break
+		}
+	}
+
+	// fmt.Println("result after remove slash char: ",result)
+
+	runeArray = []rune(result)
+
+	//remove first encountered dot from reverse order
+	for i:=len(runeArray)-1;i>0;i--{
+		if runeArray[i] == char_dot{
+			//slice
+			result = result[:i]
+			break
+		}
+
+	}
+
+	return result
 }
