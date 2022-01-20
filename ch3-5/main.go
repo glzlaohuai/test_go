@@ -3,6 +3,7 @@ package main
 import(
 	"fmt"
 	"unicode/utf8"
+	"strings"
 )
 
 func main(){
@@ -58,6 +59,8 @@ func main(){
 	fmt.Println(basename(d))
 
 
+	fmt.Println(basename2(a))
+	fmt.Println(commaIt("123234546"))
 }
 
 
@@ -95,3 +98,38 @@ func basename(s string)string{
 
 	return result
 }
+
+
+
+func basename2(s string) string{
+
+	result:=s
+	// runeArray:=[]rune(result)
+
+
+	lastIndexOfSlash:=strings.LastIndex(result,"/")
+	fmt.Println("last index of slash: ",lastIndexOfSlash)
+
+	result = s[lastIndexOfSlash+1:]
+
+	lastIndexOfDot:=strings.LastIndex(result,".")
+
+	fmt.Println("last index of dot: ",lastIndexOfDot)
+
+	result = result[:lastIndexOfDot]
+
+
+
+	return result
+
+}
+
+func commaIt(s string) string{
+	if len(s)<=3 {
+		return s
+	}
+
+	return s[:3]+","+commaIt(s[3:])
+}
+
+
