@@ -5,6 +5,8 @@ import(
 	"unicode/utf8"
 	"strings"
 	"bytes"
+	"strconv"
+	"reflect"
 )
 
 func main(){
@@ -83,6 +85,14 @@ func main(){
 	fmt.Println(ruffle("abc你","你bca"))
 
 
+
+	xxx,_:=strconv.ParseInt("eeeeeeeeee",16,64)
+	fmt.Println("result is: ",xxx)
+
+	result,_:=strconv.Atoi("144")
+	fmt.Println("result of atoi: ",result)
+
+	fmt.Println(reflect.TypeOf(xxx).Kind())
 }
 
 
